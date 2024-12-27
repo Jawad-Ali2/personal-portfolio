@@ -107,7 +107,7 @@ export default function Home() {
       >
         <Image
           className="feathered select-none rounded-md z-100"
-          src={"/personal-portfolio/myself.jpg"}
+          src={"/myself.jpg"}
           alt="pic"
           height={400}
           width={400}

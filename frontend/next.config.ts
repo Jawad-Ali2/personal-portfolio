@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'export',
-  basePath: '/personal-portfolio',
+  // output: 'export',
+  // basePath: '/personal-portfolio',
   /* config options here */
 };
 
