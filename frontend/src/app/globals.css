@@ -92,13 +92,13 @@ body {
 }
 
 .main-heading {
-  @apply font-semibold md:text-5xl text-4xl;
+  @apply font-semibold lg:text-5xl text-4xl;
 }
 
 .sub-heading{
-  @apply sm:text-2xl text-xl font-semibold;
+  @apply sm:text-xl lg:text-2xl text-[1rem] font-semibold;
 }
 
 .sub-text{
-  @apply md:text-lg sm:text-base text-sm;
+  @apply lg:text-lg sm:text-[0.9rem] text-[0.7rem];
 }
