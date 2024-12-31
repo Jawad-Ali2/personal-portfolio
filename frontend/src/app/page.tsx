@@ -1,12 +1,20 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import GitHubCalendar from "react-github-calendar";
+import { useState } from "react";
 
 export default function Home() {
+  const [year, setYear] = useState(new Date().getFullYear()); // Track selected year
+
+  console.log(typeof year);
+  // Handle year change
+  const changeYear = (newYear) => setYear(newYear);
+
   return (
-    <div className="flex justify-center items-center relative min-h-screen w-full noise-bg bg-[#161E31] select-none">
+    <div className="flex flex-col justify-center items-center relative min-h-screen w-full noise-bg bg-[#161E31] select-none space-y-20 py-10">
       {/* Main Content Section */}
-      <div className="flex justify-around md:flex-row flex-col-reverse items-center m-auto space-y-6 md:space-y-10">
+      <div className="flex justify-around md:flex-row flex-col-reverse items-center space-y-6 md:space-y-24">
         {/* Introduction Section */}
         <div className="text-white md:px-10 md:pt-24 md:m-0 m-10 items-start justify-center flex z-10 max-w-xl">
           <motion.div
@@ -15,7 +23,7 @@ export default function Home() {
             transition={{ duration: 2 }}
           >
             <p className="sub-text">👋 Hi! I am</p>
-            <h1 className="main-heading my-2 text-[#F8B179] font-firaCode">
+            <h1 className="main-heading my-2 text-gradient font-firaCode">
               Jawad Ali
             </h1>
             <p className="select-none sub-text sm:max-w-md max-w-72 text-justify">
@@ -120,6 +128,44 @@ export default function Home() {
             </button>
           </div>
         </motion.div>
+      </div>
+
+      {/* GitHub Calendar */}
+      <div className="flex flex-col justify-center items-center text-white w-full px-4">
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 font-firaCode text-gradient text-center">
+          My GitHub Contributions
+        </h2>
+
+        {/* Year Selection Buttons */}
+        <div className="flex space-x-2 sm:space-x-4 mb-6 justify-center">
+          {[2024, 2023, 2022].map((yr) => (
+            <button
+              key={yr}
+              onClick={() => changeYear(yr)}
+              className={`px-3 sm:px-4 py-2 rounded  ${
+                year === yr
+                  ? "bg-gradient-to-br from-[#F8B179] to-[#FFD1A9] text-black"
+                  : "bg-gray-700"
+              } hover:bg-[#F8B179] hover:text-black`}
+            >
+              {yr}
+            </button>
+          ))}
+        </div>
+
+        {/* Responsive GitHub Calendar */}
+        <div className="w-full max-w-4xl m-auto md:px-6 ">
+          <GitHubCalendar
+            username="Jawad-Ali2"
+            colorScheme="dark"
+            fontSize={window.innerWidth > 768 ? 16 : 12} // Dynamic font size
+            year={year}
+            theme={{
+              light: ["#ff5f6d", "#ffc3a0"],
+              dark: ["#333333", "#ff9f00"],
+            }}
+          />
+        </div>
       </div>
     </div>
   );

@@ -102,3 +102,7 @@ body {
 .sub-text{
   @apply lg:text-lg sm:text-[0.9rem] text-[0.7rem];
 }
+
+.text-gradient{
+  @apply text-transparent bg-clip-text bg-gradient-to-br from-[#F8B179] to-[#FFD1A9]
+}

@@ -1,9 +1,15 @@
 import type { NextConfig } from "next";
+import { hostname } from "os";
 
 const nextConfig: NextConfig = {
-  // output: 'export',
-  // basePath: '/personal-portfolio',
   /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        hostname: "github-readme-stats.vercel.app",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
