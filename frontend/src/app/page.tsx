@@ -156,7 +156,6 @@ export default function Home() {
           <GitHubCalendar
             username="Jawad-Ali2"
             colorScheme="dark"
-            fontSize={window.innerWidth > 768 ? 16 : 12} // Dynamic font size
             year={year}
             theme={{
               light: ["#ff5f6d", "#ffc3a0"],
