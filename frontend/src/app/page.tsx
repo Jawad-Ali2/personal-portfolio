@@ -5,11 +5,9 @@ import GitHubCalendar from "react-github-calendar";
 import { useState } from "react";
 
 export default function Home() {
-  const [year, setYear] = useState(new Date().getFullYear()); // Track selected year
+  const [year, setYear] = useState(new Date().getFullYear());
 
-  console.log(typeof year);
-  // Handle year change
-  const changeYear = (newYear) => setYear(newYear);
+  const changeYear = (newYear : number) => setYear(newYear);
 
   return (
     <div className="flex flex-col justify-center items-center relative min-h-screen w-full noise-bg bg-[#161E31] select-none space-y-20 py-10">
