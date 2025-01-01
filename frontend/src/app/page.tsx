@@ -136,7 +136,7 @@ export default function Home() {
 
         {/* Year Selection Buttons */}
         <div className="flex space-x-2 sm:space-x-4 mb-6 justify-center">
-          {[2024, 2023, 2022].map((yr) => (
+          {[2025, 2024, 2023].map((yr) => (
             <button
               key={yr}
               onClick={() => changeYear(yr)}
