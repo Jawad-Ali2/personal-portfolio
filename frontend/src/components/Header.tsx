@@ -7,7 +7,7 @@ export default function Header() {
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Web Dev", path: "/web-portfolio" },
-    { name: "Video Editing", path: "/video-editing" },
+    { name: "Video Editing", path: "/video-portfolio" },
   ];
 
   return (

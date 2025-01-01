@@ -3,11 +3,12 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import GitHubCalendar from "react-github-calendar";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
   const [year, setYear] = useState(new Date().getFullYear());
 
-  const changeYear = (newYear : number) => setYear(newYear);
+  const changeYear = (newYear: number) => setYear(newYear);
 
   return (
     <div className="flex flex-col justify-center items-center relative min-h-screen w-full noise-bg bg-[#161E31] select-none space-y-20 py-10">
@@ -49,16 +50,18 @@ export default function Home() {
                   />
                 </div>
                 <div className="flex flex-col animate-pulse">
-                  <h3 className="sub-heading text-white">
-                    Website Developer{" "}
-                    <Image
-                      src="/icons/external-link.svg"
-                      className="inline sm:max-w-none max-w-3"
-                      alt="External Link"
-                      height={20}
-                      width={20}
-                    />
-                  </h3>
+                  <Link href={"web-portfolio"}>
+                    <h3 className="sub-heading text-white">
+                      Website Developer{" "}
+                      <Image
+                        src="/icons/external-link.svg"
+                        className="inline sm:max-w-none max-w-3"
+                        alt="External Link"
+                        height={20}
+                        width={20}
+                      />
+                    </h3>
+                  </Link>
                   <p className="text-gray-300 sub-text">
                     Building intuitive web experiences.
                   </p>
@@ -79,16 +82,18 @@ export default function Home() {
                   />
                 </div>
                 <div className="flex flex-col animate-pulse">
-                  <h3 className="sub-heading text-white">
-                    Video Editing{" "}
-                    <Image
-                      src="/icons/external-link.svg"
-                      className="inline sm:max-w-none max-w-3"
-                      alt="External Link"
-                      height={20}
-                      width={20}
-                    />
-                  </h3>
+                  <Link href={"video-portfolio"}>
+                    <h3 className="sub-heading text-white">
+                      Video Editing{" "}
+                      <Image
+                        src="/icons/external-link.svg"
+                        className="inline sm:max-w-none max-w-3"
+                        alt="External Link"
+                        height={20}
+                        width={20}
+                      />
+                    </h3>
+                  </Link>
                   <p className="text-gray-300 sub-text">
                     Crafting engaging visual stories.
                   </p>
