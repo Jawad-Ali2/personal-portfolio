@@ -56,12 +56,12 @@ export default function WebPortfolio() {
   ];
 
   return (
-    <div className="flex flex-col justify-center items-center noise-bg bg-[#161E31] text-white min-h-screen">
-      <div className="flex flex-col items-start pt-28 sm:pb-14 pb-10 sm:px-28 lg:px-24 px-8 sm:space-y-2">
+    <div className="flex flex-col justify-center items-center noise-bg bg-[#161E31] lg:px-40 px-20 text-white min-h-screen">
+      <div className="flex flex-col items-start pt-28 sm:pb-14 pb-10 sm:px-24 lg:px-36 sm:space-y-2">
         <h1 className="main-heading font-bold font-firaCode text-gradient">
           Projects
         </h1>
-        <p className="text-justify max-w-full lg:max-w-[70%] text-gray-300 sub-text text-pretty">
+        <p className="text-justify max-w-full text-gray-300 sub-text text-pretty">
           I've worked on tons of little projects over the years but these are
           the ones that I'm most proud of. Many of them are open-source, so if
           you see something that piques your interest, check out the code and
