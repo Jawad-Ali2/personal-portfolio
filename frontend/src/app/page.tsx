@@ -12,9 +12,9 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center relative min-h-screen w-full noise-bg bg-[#161E31] select-none space-y-20 py-10">
       {/* Main Content Section */}
-      <div className="flex justify-around md:flex-row flex-col-reverse items-center space-y-6 md:space-y-24">
+      <div className="flex md:flex-row flex-col-reverse items-center lg:space-x-28 space-y-20 sm:space-y-10 md:space-y-24 md:gap-0 gap-10">
         {/* Introduction Section */}
-        <div className="text-white md:px-10 md:pt-24 md:m-0 m-10 items-start justify-center flex z-10 max-w-xl">
+        <div className="text-white md:px-10 md:pt-24 md:m-0 z-10 max-w-xl">
           <motion.div
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -36,7 +36,7 @@ export default function Home() {
             >
               <hr className="my-10 md:my-6 lg:my-10" />
             </motion.div>
-            <div className="relative flex flex-col items-start gap-12">
+            <div className="relative flex flex-col items-start gap-6">
               {/* Web Developer Section */}
               <div className="flex items-center sm:gap-4 gap-2">
                 <div className="relative z-10">
@@ -65,7 +65,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="relative">
-                <div className="absolute sm:left-[30px] left-[22px] -bottom-[55px] h-32 w-1 rounded-md bg-[#F8B179] z-0"></div>
+                <div className="absolute sm:left-[30px] left-[22px] -bottom-[55px] h-24 w-1 rounded-md bg-[#F8B179] z-0"></div>
               </div>
               {/* Video Editing Section */}
               <div className="flex items-center gap-4">
@@ -106,14 +106,14 @@ export default function Home() {
           className="flex flex-col text-white sm:pt-16 items-center justify-center"
         >
           <Image
-            className="select-none rounded-md z-100 lg:max-w-lg sm:max-w-[19rem] max-w-64 md:pr-10"
+            className="select-none rounded-md z-100 lg:max-w-lg sm:max-w-[19rem] max-w-64 md:mr-10"
             src={"/myself.jpg"}
             alt="pic"
             height={400}
             width={400}
           />
           <div className="flex m-2 space-x-2">
-            <button className="border-2 lg:px-24 sm:px-16 px-10 sub-text rounded-md border-[#F8B179] border-dashed">
+            <button className="border-2 lg:px-20 sm:px-16 px-10 sub-text rounded-md border-[#F8B179] border-dashed">
               View Resume
             </button>
             <button className="">
