@@ -7,8 +7,12 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function WebPortfolio() {
+  const [activeProject, setActiveProject] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
   const projects = [
     {
       title: "Trivia Master",
@@ -59,6 +63,20 @@ export default function WebPortfolio() {
     },
   ];
 
+  useEffect(() => {
+    const handleResize = () => {
+      console.log("init");
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className="flex flex-col justify-center items-center noise-bg bg-[#161E31] lg:px-40 px-20 text-white min-h-screen overflow-hidden">
       <div className="flex flex-col items-start pt-28 sm:pb-14 pb-10 sm:px-10 xl:px-32 sm:space-y-2">
@@ -72,16 +90,19 @@ export default function WebPortfolio() {
           contribute if you have ideas on how it can be improved.
         </p>
       </div>
-      <p className="text-slate-400 text-left">
-        Hover over the cards to see tech stacks used
+      <p className="text-slate-400 text-left sm:block hidden">
+          Hover over the cards to see the tech stack used.
       </p>
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:px-20 px-10">
         {projects.map((project, index) => (
-          <HoverCard openDelay={100} key={index}>
-            <HoverCardTrigger>
+          <div key={index}>
+            {isMobile ? (
+              // Mobile: Click to expand tech stack
               <div
-                key={index}
-                className="flex flex-col sm:flex-row items-center sm:space-x-4 noise-bg backdrop-blur-sm p-5 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="flex flex-col items-center noise-bg backdrop-blur-sm p-5 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                onClick={() =>
+                  setActiveProject(activeProject === index ? null : index)
+                }
               >
                 {project.badge && (
                   <span
@@ -100,7 +121,7 @@ export default function WebPortfolio() {
                 <div>
                   {project?.link ? (
                     <Link href={project.link} target="_blank">
-                      <h2 className="sm:flex sm:items-center sm:text-left text-center text-pretty text-xl font-semibold text-orange-300 sub-heading line font-firaCode underline">
+                      <h2 className="items-center sm:text-left text-center text-pretty text-xl font-semibold text-orange-300 sub-heading line font-firaCode underline">
                         {project.title}
                       </h2>
                     </Link>
@@ -120,6 +141,27 @@ export default function WebPortfolio() {
                     {project.description}
                   </p>
 
+                  <div className="flex  justify-center">
+                    {project.stack.map((tech, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ rotate: 50, scale: 0 }}
+                        animate={{ rotate: 0, scale: 1 }}
+                        transition={{ delay: i * 0.15 }}
+                        className="flex items-center justify-center p-2 rounded-md sm:m-2 m-1 hover:shadow-[0_4px_30px_rgba(255,192,138,0.6)]"
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        <Image
+                          src={`/icons/${tech}.svg`}
+                          width={40}
+                          height={40}
+                          alt={tech}
+                          className="object-cover max-w-6 rounded-md"
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+
                   {project.github && (
                     <Link
                       href={project.github}
@@ -131,6 +173,7 @@ export default function WebPortfolio() {
                       <Image
                         src={"/icons/github.svg"}
                         alt="github link"
+                        className="mx-auto sm:mx-0"
                         width={20}
                         height={20}
                       />
@@ -138,35 +181,97 @@ export default function WebPortfolio() {
                   )}
                 </div>
               </div>
-            </HoverCardTrigger>
-            <HoverCardContent className="absolute z-50 top-0 sm:-left-48 -left-40 bg-[#161E31]/50 backdrop-blur-lg rounded-lg sm:p-4 p-2 shadow-lg">
-              <motion.div
-                initial={{ x: -50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ type: "spring", duration: 1.25, bounce: 0.5 }}
-                className="relative top-0 left-0 sm:w-full h-full flex justify-center items-center"
-              >
-                {project.stack.map((tech, index) => (
-                  <motion.div
-                    initial={{ rotate: 50, scale: 0 }}
-                    animate={{ rotate: 0, scale: 1 }}
-                    transition={{ delay: index * 0.15 }}
-                    key={index}
-                    className="flex items-center justify-center p-2 rounded-md sm:m-2 m-1 hover:shadow-[0_4px_30px_rgba(255,192,138,0.6)]"
-                    whileHover={{ scale: 1.1 }}
-                  >
+            ) : (
+              <HoverCard openDelay={100} key={index}>
+                <HoverCardTrigger>
+                  <div className="flex flex-col sm:flex-row items-center sm:space-x-4 noise-bg backdrop-blur-sm p-5 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    {project.badge && (
+                      <span
+                        className={`bg-yellow-900 sm:hidden text-white text-xs mb-2 font-medium text-[0.6rem] px-2.5 py-0.5 rounded`}
+                      >
+                        {project.badge}
+                      </span>
+                    )}
                     <Image
-                      src={`/icons/${tech}.svg`}
-                      width={50}
-                      height={50}
+                      src={project.image}
+                      width={100}
+                      height={100}
                       alt={project.title}
-                      className="object-cover sm:max-w-32 max-w-9 rounded-md"
+                      className="object-cover sm:max-w-32 max-w-16 rounded-md bg-gradient-to-b from-gray-900/20 to-gray-800/20"
                     />
+                    <div>
+                      {project?.link ? (
+                        <Link href={project.link} target="_blank">
+                          <h2 className="items-center sm:text-left text-center text-pretty text-xl font-semibold text-orange-300 sub-heading line font-firaCode underline">
+                            {project.title}
+                          </h2>
+                        </Link>
+                      ) : (
+                        <h2 className="sm:flex sm:items-center sm:text-left text-center text-pretty text-xl font-semibold text-orange-300 sub-heading line font-firaCode">
+                          {project.title}
+                          {project.badge && (
+                            <span
+                              className={`bg-yellow-900 sm:inline hidden text-white text-xs sm:mb-0 mb-2 sm:ml-2 font-medium text-[0.6rem] px-2.5 py-0.5 rounded`}
+                            >
+                              {project.badge}
+                            </span>
+                          )}
+                        </h2>
+                      )}
+                      <p className="text-gray-400 sub-text text-justify">
+                        {project.description}
+                      </p>
+
+                      {project.github && (
+                        <Link
+                          href={project.github}
+                          target="_blank"
+                          className={`text-blue-400 sub-text hover:underline mt-2 block ${
+                            project.badge === "Discarded" ? "hidden" : ""
+                          }`}
+                        >
+                          <Image
+                            src={"/icons/github.svg"}
+                            alt="github link"
+                            className="mx-auto sm:mx-0"
+                            width={20}
+                            height={20}
+                          />
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                </HoverCardTrigger>
+                <HoverCardContent className="absolute z-50 top-0 sm:-left-48 -left-32 bg-[#161E31]/50 backdrop-blur-lg rounded-lg sm:p-4 p-2 shadow-lg">
+                  <motion.div
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ type: "spring", duration: 1.25, bounce: 0.5 }}
+                    className="relative top-0 left-0 sm:w-full h-full flex justify-center items-center"
+                  >
+                    {project.stack.map((tech, index) => (
+                      <motion.div
+                        initial={{ rotate: 50, scale: 0 }}
+                        animate={{ rotate: 0, scale: 1 }}
+                        transition={{ delay: index * 0.15 }}
+                        key={index}
+                        className="flex items-center justify-center p-2 rounded-md sm:m-2 m-1 hover:shadow-[0_4px_30px_rgba(255,192,138,0.6)]"
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        <Image
+                          src={`/icons/${tech}.svg`}
+                          width={50}
+                          height={50}
+                          alt={project.title}
+                          className="object-cover sm:max-w-32 max-w-7 rounded-md"
+                        />
+                      </motion.div>
+                    ))}
                   </motion.div>
-                ))}
-              </motion.div>
-            </HoverCardContent>
-          </HoverCard>
+                </HoverCardContent>
+              </HoverCard>
+            )}
+          </div>
         ))}
       </div>
     </div>
