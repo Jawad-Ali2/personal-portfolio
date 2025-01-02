@@ -61,7 +61,7 @@ export default function WebPortfolio() {
 
   return (
     <div className="flex flex-col justify-center items-center noise-bg bg-[#161E31] lg:px-40 px-20 text-white min-h-screen overflow-hidden">
-      <div className="flex flex-col items-start pt-28 sm:pb-14 pb-10 sm:px-24 lg:px-36 sm:space-y-2">
+      <div className="flex flex-col items-start pt-28 sm:pb-14 pb-10 sm:px-10 xl:px-32 sm:space-y-2">
         <h1 className="main-heading font-bold font-firaCode text-gradient">
           Projects
         </h1>
@@ -75,7 +75,7 @@ export default function WebPortfolio() {
       <p className="text-slate-400 text-left">
         Hover over the cards to see tech stacks used
       </p>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:px-20 px-10">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:px-20 px-10">
         {projects.map((project, index) => (
           <HoverCard openDelay={100} key={index}>
             <HoverCardTrigger>
