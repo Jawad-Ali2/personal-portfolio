@@ -16,6 +16,7 @@
     "framer-motion": "^11.15.0",
     "lucide-react": "^0.469.0",
     "next": "15.1.2",
+    "next-video": "^2.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-github-calendar": "^4.5.2",
@@ -30,5 +31,9 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/Jawad-Ali2/personal-portfolio.git",
+  "author": "Jawad Ali <jawadali66667@gmail.com>",
+  "license": "MIT"
 }

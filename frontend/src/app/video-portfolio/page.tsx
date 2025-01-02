@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-export default function WebPortfolio() {
+export default function VideoPortfolio() {
   const projects = [
     {
       title: "Trivia Master",
@@ -16,7 +16,6 @@ export default function WebPortfolio() {
       image: "/projects/trivia-master.svg",
       stack: ["nextjs", "nestjs", "typescript", "tailwindcss", "socketio"],
       link: "https://trivia-app-bay.vercel.app/",
-      github: "https://github.com/Jawad-Ali2/type-rivals",
     },
     {
       title: "Type Rivals",
@@ -31,15 +30,13 @@ export default function WebPortfolio() {
         "socketio",
       ],
       link: "https://type-rivals.vercel.app/",
-      github: "https://github.com/Jawad-Ali2/type-rivals",
     },
     {
-      title: "Karved",
+      title: "KARVED",
       description: "A product catalog website",
       image: "/projects/karved-white.png",
       stack: ["reactjs", "expressjs", "nodejs", "tailwindcss"],
       link: "https://karved.vercel.app/",
-      github: "https://github.com/Jawad-Ali2/type-rivals",
     },
     {
       title: "Spectrum Core",
@@ -54,13 +51,12 @@ export default function WebPortfolio() {
         "socketio",
       ],
       image: "/projects/spectrum-core.png",
-      link: null,
-      github: null,
+      link: "https://trivia-app-bay.vercel.app/",
     },
   ];
 
   return (
-    <div className="flex flex-col justify-center items-center noise-bg bg-[#161E31] lg:px-40 px-20 text-white min-h-screen overflow-hidden">
+    <div className="flex flex-col justify-center items-center noise-bg bg-[#161E31] lg:px-40 px-20 text-white min-h-screen">
       <div className="flex flex-col items-start pt-28 sm:pb-14 pb-10 sm:px-24 lg:px-36 sm:space-y-2">
         <h1 className="main-heading font-bold font-firaCode text-gradient">
           Projects
@@ -72,9 +68,7 @@ export default function WebPortfolio() {
           contribute if you have ideas on how it can be improved.
         </p>
       </div>
-      <p className="text-slate-400 text-left">
-        Hover over the cards to see tech stacks used
-      </p>
+      <p className="text-slate-400 text-left">Hover over the cards to see tech stacks used</p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:px-20 px-10">
         {projects.map((project, index) => (
           <HoverCard openDelay={100} key={index}>
@@ -98,44 +92,28 @@ export default function WebPortfolio() {
                   className="object-cover sm:max-w-32 max-w-16 rounded-md bg-gradient-to-b from-gray-900/20 to-gray-800/20"
                 />
                 <div>
-                  {project?.link ? (
-                    <Link href={project.link} target="_blank">
-                      <h2 className="sm:flex sm:items-center sm:text-left text-center text-pretty text-xl font-semibold text-orange-300 sub-heading line font-firaCode underline">
-                        {project.title}
-                      </h2>
-                    </Link>
-                  ) : (
-                    <h2 className="sm:flex sm:items-center sm:text-left text-center text-pretty text-xl font-semibold text-orange-300 sub-heading line font-firaCode">
-                      {project.title}
-                      {project.badge && (
-                        <span
-                          className={`bg-yellow-900 sm:inline hidden text-white text-xs sm:mb-0 mb-2 sm:ml-2 font-medium text-[0.6rem] px-2.5 py-0.5 rounded`}
-                        >
-                          {project.badge}
-                        </span>
-                      )}
-                    </h2>
-                  )}
+                  <h2 className="sm:flex sm:items-center sm:text-left text-center text-pretty text-xl font-semibold text-orange-300 sub-heading line font-firaCode">
+                    {project.title}
+                    {project.badge && (
+                      <span
+                        className={`bg-yellow-900 sm:inline hidden text-white text-xs sm:mb-0 mb-2 sm:ml-2 font-medium text-[0.6rem] px-2.5 py-0.5 rounded`}
+                      >
+                        {project.badge}
+                      </span>
+                    )}
+                  </h2>
                   <p className="text-gray-400 sub-text text-justify">
                     {project.description}
                   </p>
-
-                  {project.github && (
-                    <Link
-                      href={project.github}
-                      target="_blank"
-                      className={`text-blue-400 sub-text hover:underline mt-2 block ${
-                        project.badge === "Discarded" ? "hidden" : ""
-                      }`}
-                    >
-                      <Image
-                        src={"/icons/github.svg"}
-                        alt="github link"
-                        width={20}
-                        height={20}
-                      />
-                    </Link>
-                  )}
+                  <Link
+                    href={project.link}
+                    target="_blank"
+                    className={`text-blue-400 sub-text hover:underline mt-2 block ${
+                      project.badge === "Discarded" ? "hidden" : ""
+                    }`}
+                  >
+                    View Project
+                  </Link>
                 </div>
               </div>
             </HoverCardTrigger>

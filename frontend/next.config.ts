@@ -1,3 +1,4 @@
+import { withNextVideo } from "next-video/process";
 import type { NextConfig } from "next";
 import { hostname } from "os";
 
@@ -12,4 +13,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextVideo(nextConfig);
