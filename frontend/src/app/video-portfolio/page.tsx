@@ -1,8 +1,37 @@
 "use client";
-import Video from "next-video";
-import reel from "/videos/greatestt things in life.mp4";
+
+import { useState } from "react";
+import { CldVideoPlayer } from "next-cloudinary";
+import "next-cloudinary/dist/cld-video-player.css";
+
+type Video = {
+  id: number;
+  src: string;
+  thumbnail: string;
+};
 
 export default function VideoPortfolio() {
+  const videos: Video[] = [
+    {
+      id: 1,
+      src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4",
+      thumbnail: "https://via.placeholder.com/300x200",
+    },
+  ];
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
+
+  const openModal = (video: Video) => {
+    setCurrentVideo(video);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setCurrentVideo(null);
+  };
+
   return (
     <div className="flex flex-col justify-center items-center noise-bg bg-[#161E31] lg:px-40 px-20 text-white min-h-screen">
       <div className="flex flex-col items-start pt-28 sm:pb-14 pb-10 sm:px-24 lg:px-36 sm:space-y-2">
@@ -16,13 +45,44 @@ export default function VideoPortfolio() {
           contribute if you have ideas on how it can be improved.
         </p>
       </div>
-      <p className="text-slate-400 text-left">
-        Hover over the cards to see tech stacks used
-      </p>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:px-20 px-10">
-        {/* <Video src={reel} /> */}
-        <Video src={"https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4"} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {videos.map((video) => (
+          <div
+            key={video.id}
+            className="relative group cursor-pointer"
+            onClick={() => openModal(video)}
+          >
+            <img
+              src={video.thumbnail}
+              alt={"videooo"}
+              className="w-full h-48 object-cover rounded-lg group-hover:opacity-75"
+            />
+          </div>
+        ))}
       </div>
+
+      {/* Modal */}
+      {isModalOpen && currentVideo && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+          onClick={closeModal}
+        >
+          <div
+            className=" bg-[#1c2333] rounded-lg p-4 w-[50%] max-w-4xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <CldVideoPlayer
+              src={currentVideo.src}
+              logo={false}
+              playbackRates={[0.5, 1, 1.5, 2]}
+              showJumpControls
+              className="w-[50%] h-[20%]"
+              height={100}
+              width={100}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
