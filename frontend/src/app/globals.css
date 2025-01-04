@@ -96,16 +96,16 @@ body {
   @apply font-semibold lg:text-5xl text-4xl;
 }
 
-.sub-heading{
+.sub-heading {
   @apply sm:text-xl lg:text-2xl text-[1rem] font-semibold;
 }
 
-.sub-text{
+.sub-text {
   @apply lg:text-lg sm:text-[0.9rem] text-[0.7rem];
 }
 
-.text-gradient{
-  @apply text-transparent py-1 bg-clip-text bg-gradient-to-br from-[#F8B179] to-[#FFD1A9]
+.text-gradient {
+  @apply text-transparent py-1 bg-clip-text bg-gradient-to-br from-[#F8B179] to-[#FFD1A9];
 }
 
 @layer base {
@@ -171,4 +171,16 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 400px;
+  /* background: "#fff"; */
+  padding-top: 100px;
+  transform: translateX(-100%);
+  will-change: transform;
 }

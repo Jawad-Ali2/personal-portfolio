@@ -1,9 +1,21 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { Menu } from "./Menu";
+import { MenuToggle } from "./MenuToggle";
 
+// Define types for navigation links
+interface NavLink {
+  name: string;
+  path: string;
+}
+
+// Header Component
 export default function Header() {
-  const navLinks = [
+  const [isOpen, setIsOpen] = useState(false);
+
+  const navLinks: NavLink[] = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Web Dev", path: "/web-portfolio" },
@@ -11,7 +23,8 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full flex justify-evenly items-center px-6 py-4 bg-noise backdrop-blur-sm shadow-md z-50">
+    <header className="fixed top-0 left-0 w-full flex justify-between items-center px-6 py-4 bg-noise backdrop-blur-sm shadow-md z-50">
+      {/* Logo */}
       <div className="flex items-center">
         <Image
           src={"/JA_svg.svg"}
@@ -22,12 +35,12 @@ export default function Header() {
         />
       </div>
 
-      {/* Navigation Items */}
+      {/* Desktop Navigation */}
       <nav className="hidden md:flex space-x-6">
         {navLinks.map((item, index) => (
           <Link
             key={index}
-            href={`${item.path}`}
+            href={item.path}
             className="text-gray-300 hover:text-[#F8B179] transition-colors duration-300"
           >
             {item.name}
@@ -35,8 +48,8 @@ export default function Header() {
         ))}
       </nav>
 
-      {/* Download CV Button */}
-      <button className="flex items-center justify-center px-2 py-2 rounded bg-gradient-to-br from-[#F8B179] to-[#FFD1A9] text-sm font-semibold hover:shadow-lg transition-transform duration-300">
+      {/* Contact Button */}
+      <button className="hidden md:flex items-center justify-center px-2 py-2 rounded bg-gradient-to-br from-[#F8B179] to-[#FFD1A9] text-sm font-semibold hover:shadow-lg transition-transform duration-300">
         Contact Me{" "}
         <Image
           src={"/icons/contact-me.svg"}
@@ -46,6 +59,38 @@ export default function Header() {
           alt="logo"
         />
       </button>
+
+      {/* Mobile Menu Toggle */}
+      <div className="md:hidden">
+        <MenuToggle isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} />
+      </div>
+
+      {/* Mobile Navigation Menu */}
+      <div
+        className={`fixed top-0 left-0 h-screen w-[50%] bg-black bg-opacity-80 flex flex-col items-center justify-center transform ${
+          isOpen ? "-translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300 z-40`}
+        onClick={() => setIsOpen(false)}
+      >
+        <nav className="text-white text-center">
+          <ul className=" flex flex-col gap-10 text-lg">
+            {/* <li className="">Portfolio</li>
+            <li>About</li>
+            <li>Contact</li>
+            <li>Search</li> */}
+            {navLinks.map((item, index) => (
+              <Link
+                key={index}
+                href={item.path}
+                className="text-gray-300 hover:text-[#F8B179] transition-colors duration-300"
+              >
+                <li>{item.name}</li>
+              </Link>
+            ))}
+          </ul>
+        </nav>
+        {/* <Menu /> */}
+      </div>
     </header>
   );
 }

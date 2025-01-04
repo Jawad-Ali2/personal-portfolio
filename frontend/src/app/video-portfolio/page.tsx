@@ -3,6 +3,19 @@
 import { useState } from "react";
 import { CldVideoPlayer } from "next-cloudinary";
 import "next-cloudinary/dist/cld-video-player.css";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Image from "next/image";
+
+type Category = {
+  category: string;
+  videos: Video[];
+};
 
 type Video = {
   id: number;
@@ -11,11 +24,88 @@ type Video = {
 };
 
 export default function VideoPortfolio() {
-  const videos: Video[] = [
+  const videosCategories: Category[] = [
     {
-      id: 1,
-      src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4",
-      thumbnail: "https://via.placeholder.com/300x200",
+      category: "Reels",
+      videos: [
+        {
+          id: 1,
+          src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4",
+          thumbnail:
+            "https://w0.peakpx.com/wallpaper/607/199/HD-wallpaper-evening-pic-natura.jpg",
+        },
+        {
+          id: 2,
+          src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4",
+          thumbnail:
+            "https://images.unsplash.com/photo-1568721721169-dc9a5b5acf7f?q=80&w=1588&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        },
+        {
+          id: 3,
+          src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4",
+          thumbnail:
+            "https://w0.peakpx.com/wallpaper/607/199/HD-wallpaper-evening-pic-natura.jpg",
+        },
+        {
+          id: 4,
+          src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4",
+          thumbnail:
+            "https://w0.peakpx.com/wallpaper/607/199/HD-wallpaper-evening-pic-natura.jpg",
+        },
+        {
+          id: 5,
+          src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4",
+          thumbnail:
+            "https://w0.peakpx.com/wallpaper/607/199/HD-wallpaper-evening-pic-natura.jpg",
+        },
+        {
+          id: 6,
+          src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4",
+          thumbnail:
+            "https://w0.peakpx.com/wallpaper/607/199/HD-wallpaper-evening-pic-natura.jpg",
+        },
+      ],
+    },
+    {
+      category: "Tutorials",
+      videos: [
+        {
+          id: 7,
+          src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4",
+          thumbnail:
+            "https://w0.peakpx.com/wallpaper/607/199/HD-wallpaper-evening-pic-natura.jpg",
+        },
+        {
+          id: 8,
+          src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4",
+          thumbnail:
+            "https://w0.peakpx.com/wallpaper/607/199/HD-wallpaper-evening-pic-natura.jpg",
+        },
+        {
+          id: 9,
+          src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4",
+          thumbnail:
+            "https://w0.peakpx.com/wallpaper/607/199/HD-wallpaper-evening-pic-natura.jpg",
+        },
+        {
+          id: 10,
+          src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4",
+          thumbnail:
+            "https://w0.peakpx.com/wallpaper/607/199/HD-wallpaper-evening-pic-natura.jpg",
+        },
+        {
+          id: 11,
+          src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4",
+          thumbnail:
+            "https://w0.peakpx.com/wallpaper/607/199/HD-wallpaper-evening-pic-natura.jpg",
+        },
+        {
+          id: 12,
+          src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4",
+          thumbnail:
+            "https://w0.peakpx.com/wallpaper/607/199/HD-wallpaper-evening-pic-natura.jpg",
+        },
+      ],
     },
   ];
 
@@ -45,21 +135,56 @@ export default function VideoPortfolio() {
           contribute if you have ideas on how it can be improved.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {videos.map((video) => (
-          <div
-            key={video.id}
-            className="relative group cursor-pointer"
-            onClick={() => openModal(video)}
+
+      {videosCategories.map(({ category, videos }) => (
+        <div
+          key={category}
+          className="flex flex-col items-start w-full sm:px-24 lg:px-36"
+        >
+          <h2 className="text-2xl font-bold text-gradient">{category}</h2>
+
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+              active: true,
+            }}
+            className="w-full max-w-max h-max"
           >
-            <img
-              src={video.thumbnail}
-              alt={"videooo"}
-              className="w-full h-48 object-cover rounded-lg group-hover:opacity-75"
-            />
-          </div>
-        ))}
-      </div>
+            <CarouselContent>
+              {videos.map((video) => (
+                // {Array.from({ length: 5 }).map((_, index) => (
+                <CarouselItem
+                  key={video.id}
+                  className="md:basis-1/2 lg:basis-1/4"
+                >
+                  <div
+                    key={video.id}
+                    className="relative group cursor-pointer"
+                    onClick={() => openModal(video)}
+                  >
+                    <img
+                      src={video.thumbnail}
+                      alt={"videooo"}
+                      className="w-full h-48 object-cover rounded-lg group-hover:opacity-75"
+                    />
+                    <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Image
+                        src={"/icons/play.svg"}
+                        alt={category}
+                        height={50}
+                        width={50}
+                      />
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
+      ))}
 
       {/* Modal */}
       {isModalOpen && currentVideo && (
@@ -68,7 +193,7 @@ export default function VideoPortfolio() {
           onClick={closeModal}
         >
           <div
-            className=" bg-[#1c2333] rounded-lg p-4 w-[50%] max-w-4xl"
+            className=" bg-[#1c2333] rounded-lg p-4 md:w-[50%] w-[80%] max-w-4xl"
             onClick={(e) => e.stopPropagation()}
           >
             <CldVideoPlayer
@@ -76,7 +201,7 @@ export default function VideoPortfolio() {
               logo={false}
               playbackRates={[0.5, 1, 1.5, 2]}
               showJumpControls
-              className="w-[50%] h-[20%]"
+              className="w-[90%] h-[80%]"
               height={100}
               width={100}
             />
