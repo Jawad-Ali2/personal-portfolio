@@ -30,7 +30,7 @@ export default function VideoPortfolio() {
       videos: [
         {
           id: 1,
-          src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1735908968/qpp37g2y9osmfa9uhvyg.mp4",
+          src: "https://res.cloudinary.com/dazlvcjmc/video/upload/v1736069608/zy5yy5plxrpxwautno03.mp4",
           thumbnail:
             "https://w0.peakpx.com/wallpaper/607/199/HD-wallpaper-evening-pic-natura.jpg",
         },
@@ -113,8 +113,13 @@ export default function VideoPortfolio() {
   const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
 
   const openModal = (video: Video) => {
-    setCurrentVideo(video);
-    setIsModalOpen(true);
+    const videoElement = document.createElement("video"); // Create a temporary video element
+    videoElement.src = video.src; // Set the video source
+
+    videoElement.onloadedmetadata = () => {
+      setCurrentVideo(video); // Set the video to state
+      setIsModalOpen(true); // Open the modal
+    };
   };
 
   const closeModal = () => {
@@ -137,10 +142,7 @@ export default function VideoPortfolio() {
       </div>
 
       {videosCategories.map(({ category, videos }) => (
-        <div
-          key={category}
-          className="flex flex-col items-start w-full sm:px-24 lg:px-36"
-        >
+        <div key={category} className="flex flex-col w-full sm:px-24 lg:px-36">
           <h2 className="text-2xl font-bold text-gradient">{category}</h2>
 
           <Carousel
@@ -153,7 +155,6 @@ export default function VideoPortfolio() {
           >
             <CarouselContent>
               {videos.map((video) => (
-                // {Array.from({ length: 5 }).map((_, index) => (
                 <CarouselItem
                   key={video.id}
                   className="md:basis-1/2 lg:basis-1/4"
@@ -168,7 +169,7 @@ export default function VideoPortfolio() {
                       alt={"videooo"}
                       className="w-full h-48 object-cover rounded-lg group-hover:opacity-75"
                     />
-                    <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
                       <Image
                         src={"/icons/play.svg"}
                         alt={category}
@@ -186,14 +187,13 @@ export default function VideoPortfolio() {
         </div>
       ))}
 
-      {/* Modal */}
       {isModalOpen && currentVideo && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
           onClick={closeModal}
         >
           <div
-            className=" bg-[#1c2333] rounded-lg p-4 md:w-[50%] w-[80%] max-w-4xl"
+            className="relative flex justify-center items-center p-4 rounded-lg aspect-container"
             onClick={(e) => e.stopPropagation()}
           >
             <CldVideoPlayer
@@ -201,9 +201,11 @@ export default function VideoPortfolio() {
               logo={false}
               playbackRates={[0.5, 1, 1.5, 2]}
               showJumpControls
-              className="w-[90%] h-[80%]"
-              height={100}
-              width={100}
+              controls={true}
+              bigPlayButton={true}
+              aspectRatio="16:9"
+              pictureInPictureToggle={true}
+              allowUsageReport={true}
             />
           </div>
         </div>

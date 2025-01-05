@@ -17,6 +17,9 @@
 body {
   /* color: var(--foreground);
   background: var(--background); */
+  transition-property: opacity, background, transform;
+  transition-timing-function: ease-in-out;
+  transition-duration: 500ms;
   font-family: Poppins, Arial, Helvetica, sans-serif;
 }
 .clip-left {
@@ -179,8 +182,23 @@ body {
   left: 0;
   bottom: 0;
   width: 400px;
-  /* background: "#fff"; */
   padding-top: 100px;
   transform: translateX(-100%);
   will-change: transform;
+}
+
+.aspect-container {
+  position: relative;
+  width: 100%; /* Full width */
+  max-width: 90%; /* Adjust modal width */
+  max-height: 80vh; /* Prevent overflow */
+  /* aspect-ratio: var(--aspect-ratio, 16 / 9); Default to 16:9 */
+  /* background: black; Placeholder for video background */
+  overflow: hidden;
+}
+
+.page-transition {
+  opacity: 0;
+  background-color: black;
+  transform: translateY(40px);
 }

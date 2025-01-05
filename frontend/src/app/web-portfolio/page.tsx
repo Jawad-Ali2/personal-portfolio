@@ -78,7 +78,7 @@ export default function WebPortfolio() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center noise-bg bg-[#161E31] lg:px-40 px-20 text-white min-h-screen overflow-hidden">
+    <div className="flex flex-col justify-center items-center noise-bg bg-[#161E31] lg:px-40 sm:px-20 px-10 text-white min-h-screen overflow-hidden pb-10">
       <div className="flex flex-col items-start pt-28 sm:pb-14 pb-10 sm:px-10 xl:px-32 sm:space-y-2">
         <h1 className="main-heading font-bold font-firaCode text-gradient">
           Projects
@@ -90,16 +90,15 @@ export default function WebPortfolio() {
           contribute if you have ideas on how it can be improved.
         </p>
       </div>
-      <p className="text-slate-400 text-left sm:block hidden">
-          Hover over the cards to see the tech stack used.
+      <p className="text-slate-400 text-left md:block hidden">
+        Hover over the cards to see the tech stack used.
       </p>
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:px-20 px-10">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:px-20 sm:m-0 m-auto">
         {projects.map((project, index) => (
           <div key={index}>
             {isMobile ? (
-              // Mobile: Click to expand tech stack
               <div
-                className="flex flex-col items-center noise-bg backdrop-blur-sm p-5 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="flex flex-col items-center noise-bg backdrop-blur-sm p-5 rounded-lg shadow-lg min-w-48"
                 onClick={() =>
                   setActiveProject(activeProject === index ? null : index)
                 }
@@ -116,12 +115,12 @@ export default function WebPortfolio() {
                   width={100}
                   height={100}
                   alt={project.title}
-                  className="object-cover sm:max-w-32 max-w-16 rounded-md bg-gradient-to-b from-gray-900/20 to-gray-800/20"
+                  className="object-cover sm:max-w-32 max-w-24 rounded-md bg-gradient-to-b from-gray-900/20 to-gray-800/20"
                 />
                 <div>
                   {project?.link ? (
                     <Link href={project.link} target="_blank">
-                      <h2 className="items-center sm:text-left text-center text-pretty text-xl font-semibold text-orange-300 sub-heading line font-firaCode underline">
+                      <h2 className="items-center md:text-left text-center text-pretty text-xl font-semibold text-orange-300 sub-heading line font-firaCode underline">
                         {project.title}
                       </h2>
                     </Link>
@@ -141,7 +140,7 @@ export default function WebPortfolio() {
                     {project.description}
                   </p>
 
-                  <div className="flex  justify-center">
+                  {/* <div className="flex justify-center">
                     {project.stack.map((tech, i) => (
                       <motion.div
                         key={i}
@@ -160,7 +159,7 @@ export default function WebPortfolio() {
                         />
                       </motion.div>
                     ))}
-                  </div>
+                  </div> */}
 
                   {project.github && (
                     <Link
@@ -173,7 +172,7 @@ export default function WebPortfolio() {
                       <Image
                         src={"/icons/github.svg"}
                         alt="github link"
-                        className="mx-auto sm:mx-0"
+                        className="mx-auto md:mx-0"
                         width={20}
                         height={20}
                       />
@@ -242,7 +241,7 @@ export default function WebPortfolio() {
                     </div>
                   </div>
                 </HoverCardTrigger>
-                <HoverCardContent className="absolute z-50 top-0 sm:-left-48 -left-32 bg-[#161E31]/50 backdrop-blur-lg rounded-lg sm:p-4 p-2 shadow-lg">
+                <HoverCardContent className="absolute z-50 -top-6 -left-44 bg-[#161E31]/50 h-12 backdrop-blur-lg rounded-lg sm:p-4 p-2 shadow-lg">
                   <motion.div
                     initial={{ x: -50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -263,7 +262,7 @@ export default function WebPortfolio() {
                           width={50}
                           height={50}
                           alt={project.title}
-                          className="object-cover sm:max-w-32 max-w-7 rounded-md"
+                          className="object-cover sm:max-w-22 max-w-7 rounded-md"
                         />
                       </motion.div>
                     ))}

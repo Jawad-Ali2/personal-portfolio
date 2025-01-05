@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { Menu } from "./Menu";
 import { MenuToggle } from "./MenuToggle";
+import TransitionLink from "./TransitionLink";
 
 // Define types for navigation links
 interface NavLink {
@@ -17,13 +18,13 @@ export default function Header() {
 
   const navLinks: NavLink[] = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
+    { name: "About", path: "/about-me" },
     { name: "Web Dev", path: "/web-portfolio" },
     { name: "Video Editing", path: "/video-portfolio" },
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full flex justify-between items-center px-6 py-4 bg-noise backdrop-blur-sm shadow-md z-50">
+    <header className="fixed top-0 left-0 w-full flex justify-between md:justify-around items-center px-6 py-4 bg-noise backdrop-blur-sm shadow-md z-50">
       {/* Logo */}
       <div className="flex items-center">
         <Image
