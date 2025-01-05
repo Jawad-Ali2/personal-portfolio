@@ -12,14 +12,14 @@ const Footer = () => {
           <Image
             src={"/icons/nextjs.svg"}
             alt="nextjs"
-            height={20}
-            width={20}
+            height={25}
+            width={25}
           />
           <Image
             src={"/icons/tailwindcss.svg"}
             alt="nextjs"
-            height={20}
-            width={20}
+            height={25}
+            width={25}
           />
         </div>
       </div>

@@ -53,6 +53,7 @@ export default {
       },
       fontFamily: {
         poppins: ["var(--font-poppins)"],
+        roboto: ["var(--font-roboto)"],
         firaCode: ["var(--font-fira-code)"],
       },
       clipPath: {
