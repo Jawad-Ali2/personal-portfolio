@@ -182,7 +182,7 @@ export default function WebPortfolio() {
               </div>
             ) : (
               <HoverCard openDelay={100} key={index}>
-                <HoverCardTrigger>
+                <HoverCardTrigger asChild>
                   <div className="flex flex-col sm:flex-row items-center sm:space-x-4 noise-bg backdrop-blur-sm p-5 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                     {project.badge && (
                       <span
