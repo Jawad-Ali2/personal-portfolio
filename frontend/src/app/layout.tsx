@@ -3,6 +3,7 @@ import { Poppins, Fira_Code, Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
 
 const poppins = Poppins({
   variable: "--font-poppins",

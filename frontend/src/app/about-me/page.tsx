@@ -54,16 +54,16 @@ export default function AboutMe() {
             <span className="text-gradient"> Pakistan</span>.
           </h1>
 
-          <p className="sm:text-lg text-base font-roboto py-2">
+          <p className="sm:text-lg text-sm font-roboto py-2">
             A snapshot of who I am, what I do, and a few quirks that make me
             unique!
           </p>
         </section>
         <section className="mb-10">
-          <h2 className="text-2xl font-bold font-firaCode text-gradient mb-4">
+          <h2 className="main-heading2 font-bold font-firaCode text-gradient mb-4">
             Student Life
           </h2>
-          <p className="sm:text-lg text-base">
+          <p className="sm:text-lg text-sm">
             I am currently pursuing a degree in{" "}
             <span className="text-[#ffd1a9] font-bold">
               Software Engineering
@@ -76,10 +76,10 @@ export default function AboutMe() {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold font-firaCode text-gradient mb-4">
+          <h2 className="main-heading2 font-bold font-firaCode text-gradient mb-4">
             Professional Experience
           </h2>
-          <p className="sm:text-lg text-base">
+          <p className="sm:text-lg text-sm">
             I’ve been a{" "}
             <span className="text-[#ffd1a9] font-bold">
               Freelance Video Editor
@@ -90,17 +90,17 @@ export default function AboutMe() {
             <span className="text-[#ffd1a9] font-bold">Web Development</span>,
             where I create seamless, user-friendly experiences on the web.
           </p>
-          <p className="italic text-gray-400 mt-2">
+          <p className="italic text-gray-400 mt-2 sm:text-lg text-sm">
             Fun Fact: I once spent an hour debugging only to find out the
             problem was a missing semicolon. Classic developer moment!
           </p>
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold font-firaCode text-gradient mb-4">
+          <h2 className="main-heading2 font-bold font-firaCode text-gradient mb-4">
             Skills
           </h2>
-          <ul className="list-disc list-inside space-y-2 sm:text-lg text-base">
+          <ul className="list-disc list-inside space-y-2 sm:text-lg text-sm">
             <li>Video Editing (Adobe Premiere Pro, After Effects)</li>
             <li>Web Development (JavaScript, React, Next.js, Node.js)</li>
             <li>Creative Problem Solving</li>
@@ -112,10 +112,10 @@ export default function AboutMe() {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold font-firaCode text-gradient mb-4">
+          <h2 className="main-heading2 font-bold font-firaCode text-gradient mb-4">
             Soft Skills
           </h2>
-          <ul className="list-disc list-inside space-y-2 font-roboto sm:text-lg text-base">
+          <ul className="list-disc list-inside space-y-2 font-roboto sm:text-lg text-sm">
             <li>
               <strong className="tracking-wider">
                 Independence and Initiative:
@@ -152,10 +152,10 @@ export default function AboutMe() {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold font-firaCode text-gradient mb-4">
+          <h2 className="main-heading2 font-bold font-firaCode text-gradient mb-4">
             Who Am I Outside of Work?
           </h2>
-          <p className="font-roboto sm:text-lg text-base">
+          <p className="font-roboto sm:text-lg text-sm">
             Outside of my professional life, I enjoy exploring new technologies,
             binge-watching sci-fi series, and perfecting the art of making
             instant noodles (an essential student skill).
@@ -166,7 +166,7 @@ export default function AboutMe() {
           <h2 className="text-2xl font-bold font-firaCode text-gradient mb-4">
             Usage
           </h2>
-          <p className="sm:text-lg text-base">
+          <p className="sm:text-lg text-sm">
             Tools, technologies, and gadgets I rely on daily to design, develop,
             and deliver. Here’s a snapshot of my tech stack and gear:
           </p>
@@ -174,7 +174,7 @@ export default function AboutMe() {
             <h3 className="text-xl font-semibold font-firaCode text-gradient mt-6 mb-2">
               Technologies
             </h3>
-            <ul className="list-disc list-inside space-y-2 font-roboto sm:text-lg text-base">
+            <ul className="list-disc list-inside space-y-2 font-roboto sm:text-lg text-sm">
               {technologies.map((tech, index) => (
                 <li key={index} className="flex items-center gap-2">
                   <Image
@@ -191,7 +191,7 @@ export default function AboutMe() {
             <h3 className="text-xl font-semibold mt-6 font-firaCode text-gradient mb-2">
               Tools
             </h3>
-            <ul className="list-disc list-inside space-y-2 font-roboto sm:text-lg text-base">
+            <ul className="list-disc list-inside space-y-2 font-roboto sm:text-lg text-sm">
               {tools.map((tool, index) => (
                 <li key={index} className="flex items-center gap-2">
                   <Image
@@ -208,7 +208,7 @@ export default function AboutMe() {
             <h3 className="text-xl font-semibold font-firaCode text-gradient mt-6 mb-2">
               Platforms
             </h3>
-            <ul className="list-disc list-inside space-y-2 font-roboto sm:text-lg text-base">
+            <ul className="list-disc list-inside space-y-2 font-roboto sm:text-lg text-sm">
               {platforms.map((platform, index) => (
                 <li key={index} className="flex items-center gap-2">
                   <Image
@@ -225,8 +225,8 @@ export default function AboutMe() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold font-firaCode text-gradient mb-4">Looking Ahead</h2>
-          <p className="font-roboto sm:text-lg text-base">
+          <h2 className="main-heading2 font-bold font-firaCode text-gradient mb-4">Looking Ahead</h2>
+          <p className="font-roboto sm:text-lg text-sm">
             As I continue to grow, I aim to blend my technical expertise with
             creativity, making an impact both on the screen and on the web. If
             you’re curious about my work or have a cool project in mind, let’s

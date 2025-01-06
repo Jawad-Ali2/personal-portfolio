@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { CldVideoPlayer } from "next-cloudinary";
 import "next-cloudinary/dist/cld-video-player.css";
 import {
@@ -11,6 +11,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
+import Loading from "@/components/Loading";
 
 type Category = {
   category: string;
@@ -24,6 +25,7 @@ type Video = {
 };
 
 export default function VideoPortfolio() {
+  const [isLoading, setIsLoading] = useState(false);
   const videosCategories: Category[] = [
     {
       category: "Reels",
@@ -162,7 +164,11 @@ export default function VideoPortfolio() {
                   <div
                     key={video.id}
                     className="relative group cursor-pointer"
-                    onClick={() => openModal(video)}
+                    onClick={() => {
+                      openModal(video);
+
+                      setIsLoading(true);
+                    }}
                   >
                     <img
                       src={video.thumbnail}
@@ -184,12 +190,15 @@ export default function VideoPortfolio() {
             <CarouselPrevious />
             <CarouselNext />
           </Carousel>
+          
         </div>
       ))}
 
+      {isLoading && <Loading />}
+
       {isModalOpen && currentVideo && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-4"
           onClick={closeModal}
         >
           <div
@@ -206,6 +215,7 @@ export default function VideoPortfolio() {
               aspectRatio="16:9"
               pictureInPictureToggle={true}
               allowUsageReport={true}
+              onDataLoad={() => setIsLoading(false)}
             />
           </div>
         </div>
